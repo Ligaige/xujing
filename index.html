@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>滨城名师初中英语徐晶工作室</title>
+<style>
+:root{
+  --canvas:#F6F8FC; --surface:#FFFFFF; --ink:#14213D; --ink-2:#5B6678; --line:#E3E8F0;
+  --brand:#1E4E8C; --brand-deep:#123A68; --gold:#C9A24B; --gold-soft:#F5EBD6;
+  --maxw:1200px; --radius:14px;
+  --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--canvas);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}
+img{max-width:100%;display:block}
+ul,ol{list-style:none}
+.container{width:min(var(--maxw),92%);margin:0 auto}
+
+/* 顶栏 */
+.site-head{background:var(--brand-deep);color:#fff;position:sticky;top:0;z-index:50}
+.site-head .container{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.brand .badge{font-size:12px;letter-spacing:.12em;padding:4px 10px;border:1px solid rgba(255,255,255,.4);border-radius:999px}
+.brand .t{font-size:19px;line-height:1.3}
+.site-nav{display:flex;gap:22px;flex-wrap:wrap;font-size:15px}
+.site-nav a{color:rgba(255,255,255,.88);transition:.2s}
+.site-nav a:hover{color:var(--gold)}
+
+/* 页头横幅 */
+.page-hero{background:linear-gradient(135deg,var(--brand-deep) 0%,var(--brand) 60%,#2A6BA8 100%);color:#fff;padding:60px 0;position:relative;overflow:hidden}
+.page-hero::after{content:"";position:absolute;inset:0;background:radial-gradient(50% 90% at 85% 10%,rgba(201,162,75,.28),transparent 60%)}
+.page-hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:center}
+.page-hero h1{font-size:clamp(28px,4.5vw,42px);font-weight:800;line-height:1.3;margin-bottom:14px}
+.page-hero .kicker{color:var(--gold);letter-spacing:.18em;font-size:13px;margin-bottom:12px}
+.page-hero p{color:rgba(255,255,255,.9);font-size:16px;max-width:620px}
+.page-hero .photo img{width:100%;max-width:280px;border-radius:var(--radius);box-shadow:0 20px 50px rgba(0,0,0,.35);margin:0 auto}
+.page-hero .photo .cap{text-align:center;color:rgba(255,255,255,.8);font-size:13px;margin-top:10px}
+
+/* 板块 */
+main{padding:52px 0}
+section{margin-bottom:52px}
+.sec-head{text-align:center;margin-bottom:32px}
+.sec-head .tag{color:var(--gold);letter-spacing:.2em;font-size:13px;font-weight:700;margin-bottom:8px}
+.sec-head h2{font-size:clamp(24px,3.4vw,32px);color:var(--brand-deep);font-weight:800}
+.sec-head .sub{color:var(--ink-2);max-width:720px;margin:10px auto 0}
+.divider{height:1px;background:var(--line)}
+
+/* 主持人 */
+.lead{display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:36px;box-shadow:0 6px 24px rgba(20,33,61,.05)}
+.lead .ph img{width:100%;border-radius:var(--radius)}
+.lead .bio h3{color:var(--brand-deep);font-size:24px;margin-bottom:4px}
+.lead .bio .role{color:var(--gold);font-weight:700;font-size:14px;margin-bottom:16px}
+.lead .bio p{color:var(--ink-2);font-size:15.5px;margin-bottom:12px;text-align:justify}
+.lead .bio b{color:var(--ink)}
+.lead .hons{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lead .hons span{background:var(--gold-soft);color:#8a6a25;font-size:13px;padding:6px 14px;border-radius:999px;font-weight:600}
+
+/* 成员 */
+.members{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.member{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;text-align:center;box-shadow:0 6px 24px rgba(20,33,61,.05)}
+.member .ava{width:74px;height:74px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:26px;font-weight:800;margin:0 auto 14px}
+.member h3{font-size:17px;color:var(--brand-deep)}
+.member .mrole{color:var(--ink-2);font-size:13.5px;margin-top:6px}
+.member span.empty{color:#a0aabd;font-size:12.5px;display:block;margin-top:8px}
+
+/* 活动纪实 */
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 6px 24px rgba(20,33,61,.05)}
+.act .ic{width:42px;height:42px;border-radius:10px;background:var(--brand);display:grid;place-items:center;color:#fff;margin-bottom:12px}
+.act h3{font-size:17px;color:var(--brand-deep);margin-bottom:8px}
+.act p{color:var(--ink-2);font-size:14px}
+.media{margin-top:26px;background:var(--gold-soft);border-radius:var(--radius);padding:20px 24px}
+.media .mt{font-weight:700;color:var(--brand-deep);font-size:15px;margin-bottom:10px}
+.media a{display:block;color:var(--ink-2);font-size:13.5px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.media a:last-child{border-bottom:none}
+.media a b{color:var(--brand)}
+
+/* 页脚 */
+.site-foot{background:var(--ink);color:rgba(255,255,255,.78);padding:38px 0 24px;text-align:center}
+.site-foot p{font-size:14px;color:rgba(255,255,255,.68)}
+.site-foot .copy{margin-top:16px;border-top:1px solid rgba(255,255,255,.12);padding-top:18px;font-size:13px;color:rgba(255,255,255,.5)}
+
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{ .site-head{position:static;background:var(--ink)} .page-hero{background:var(--ink)!important;padding:28px 0} main{padding:24px 0} .lead,.member,.act{box-shadow:none} a{color:var(--ink)} }
+@media(max-width:960px){ .page-hero .container{grid-template-columns:1fr} .page-hero .photo{order:-1} .lead{grid-template-columns:1fr} .members{grid-template-columns:1fr 1fr} .acts{grid-template-columns:1fr} }
+@media(max-width:560px){ .members{grid-template-columns:1fr} .site-nav{gap:14px} }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="container">
+    <div class="brand">
+      <span class="badge">大连市名师工作室</span>
+      <span class="t">滨城名师初中英语徐晶工作室</span>
+    </div>
+    <nav class="site-nav">
+      <a href="#lead">主持人介绍</a>
+      <a href="#members">成员介绍</a>
+      <a href="#acts">活动纪实</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <div>
+      <div class="kicker">滨城名师初中英语徐晶工作室 · 大连市名师工作室</div>
+      <h1>有趣 · 有思考 · 有意义<br>FUN思意英语课堂</h1>
+      <p>工作室由徐晶老师领衔，以"FUN思意"理念为内核，聚焦初中英语课堂教学改革与教师专业成长，是一个集学习、研究、成长于一体的市级名师研修共同体。</p>
+    </div>
+    <figure class="photo">
+      <img src="主持人_徐晶.jpg" alt="工作室领衔人徐晶老师工作照">
+      <figcaption class="cap">工作室领衔人 · 徐晶</figcaption>
+    </figure>
+  </div>
+</div>
+
+<main>
+<div class="container">
+
+  <section id="lead">
+    <div class="sec-head">
+      <div class="tag">领衔主持</div>
+      <h2>工作室主持人介绍</h2>
+    </div>
+    <div class="lead">
+      <div class="ph"><img src="主持人_徐晶.jpg" alt="主持人徐晶工作照"></div>
+      <div class="bio">
+        <h3>徐晶</h3>
+        <div class="role">滨城名师初中英语徐晶工作室 领衔人</div>
+        <p>徐晶，中共党员，<b>正高级教师</b>，大连市第七十九中学科研主任，辽宁教育学院培训专家库首批成员、辽宁省教育学会外语专业委员会理事。先后荣获<b>辽宁省特级教师、辽宁省兴辽英才教学名师、辽宁省中小学教学名师、辽宁省学科带头人</b>等称号，现领衔省教学名师项目、滨城名师初中英语徐晶工作室及沙河口区名优教师工作室。</p>
+        <p>她首次提出<b>FUN思意理念</b>，主张"有趣、有思考、有意义"的教与学，致力于让英语课堂成为师生双向奔赴、共生共强的快乐学习场。</p>
+        <div class="hons">
+          <span>省特级教师</span>
+          <span>兴辽英才教学名师</span>
+          <span>省中小学教学名师</span>
+          <span>省学科带头人</span>
+          <span>正高级教师</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="members">
+    <div class="sec-head">
+      <div class="tag">团队风采</div>
+      <h2>工作室主持人及成员介绍</h2>
+      <p class="sub">工作室以大连市及周边地区初中英语骨干教师为主体，覆盖多所学校、多个学段，结构合理、优势互补。</p>
+    </div>
+    <div class="members">
+      <div class="member">
+        <div class="ava">徐</div>
+        <h3>徐晶</h3>
+        <div class="mrole">工作室主持人 · 正高级教师</div>
+      </div>
+      <div class="member">
+        <div class="ava">成</div>
+        <h3>骨干成员</h3>
+        <div class="mrole">项目研训骨干教师</div>
+        <span class="empty">· 成员资料整理中 ·</span>
+      </div>
+      <div class="member">
+        <div class="ava">团</div>
+        <h3>研修团队</h3>
+        <div class="mrole">跨校协作研修成员</div>
+        <span class="empty">· 成员资料整理中 ·</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="acts">
+    <div class="sec-head">
+      <div class="tag">研修足迹</div>
+      <h2>活动纪实</h2>
+      <p class="sub">记录工作室常态化开展的各类研修与辐射活动。</p>
+    </div>
+    <div class="acts">
+      <div class="act">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>线上研修</h3>
+        <p>依托云端平台常态开展课例研磨、专题讲座与集体备课，实现跨校、跨区域的教研协同。</p>
+      </div>
+      <div class="act">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3>课堂展示与研究</h3>
+        <p>聚焦初中英语课堂改革，开展公开课、示范课与课例研究，以研促教、以教促改。</p>
+      </div>
+      <div class="act">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12c.8.5 1 1.3 1 2h6c0-.7.2-1.5 1-2a7 7 0 0 0-4-12z"/></svg></div>
+        <h3>课题研讨</h3>
+        <p>围绕"FUN思意"等主题开展课题研究，把课堂问题转化为研究课题，以研究成果反哺课堂。</p>
+      </div>
+      <div class="act">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <h3>示范送培</h3>
+        <p>通过送教送培、成果分享与经验辐射，将优质课堂与研训成果推广到更广范围。</p>
+      </div>
+    </div>
+    <div class="media">
+      <div class="mt">权威媒体报道（可点击查阅原文）</div>
+      <a href="http://m.toutiao.com/group/7553878213202657792/" target="_blank" rel="noopener noreferrer"><b>半岛晨报 · 2025-09-25</b>｜大连市第七十九中学徐晶：创新"玩英语"让学生从苦学到善学</a>
+      <a href="https://m.thepaper.cn/newsDetail_forward_33847699" target="_blank" rel="noopener noreferrer"><b>大连发布 / 澎湃 · 2026-08-25</b>｜那些照亮我们的师者微光：徐晶从"一盘散沙"到"追梦家园"</a>
+      <a href="http://dianda.cqvip.com/Qikan/Article/Detail?id=7108560054" target="_blank" rel="noopener noreferrer"><b>辽宁教育 · 2022年第23期</b>｜《"双减"背景下初中英语课外阅读教学模式的改进研究》</a>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="container">
+    <p>滨城名师初中英语徐晶工作室 · 名师领航 · 趣思并行 · 意义驱动</p>
+    <p style="margin-top:8px">大连市名师工作室 · 本网站用于省级线上名师工作室研修案例评审展示</p>
+    <div class="copy">© 2026 滨城名师初中英语徐晶工作室</div>
+    <p style="margin-top:14px;font-size:12.5px"><a href="manage.html" style="color:rgba(255,255,255,.4)">内容管理入口</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
