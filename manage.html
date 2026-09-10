@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>内容管理 · 滨城名师初中英语徐晶工作室</title>
+<style>
+:root{
+  --canvas:#F4F6FB; --surface:#FFFFFF; --ink:#14213D; --ink-2:#5B6678; --line:#E3E8F0;
+  --brand:#1E4E8C; --brand-deep:#123A68; --gold:#C9A24B; --gold-soft:#F5EBD6;
+  --ok:#2E7D6B; --danger:#C0392B; --maxw:1000px; --radius:12px;
+  --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);color:var(--ink);background:var(--canvas);line-height:1.7}
+a{color:var(--brand);text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+.container{width:min(var(--maxw),94%);margin:0 auto}
+
+.head{background:var(--brand-deep);color:#fff;padding:20px 0}
+.head .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.head h1{font-size:22px}
+.head .back{background:rgba(255,255,255,.14);color:#fff;padding:8px 16px;border-radius:999px;font-size:14px}
+.head .back:hover{background:var(--gold);color:var(--ink)}
+
+main{padding:34px 0}
+.note{background:var(--gold-soft);border-left:4px solid var(--gold);color:#8a6a25;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:26px;font-size:14px}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:22px;box-shadow:0 4px 18px rgba(20,33,61,.05)}
+.panel>h2{font-size:18px;color:var(--brand-deep);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--gold-soft);display:flex;align-items:center;gap:8px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13.5px;color:var(--ink-2);font-weight:600;margin-bottom:6px}
+.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;color:var(--ink);background:#fff}
+.field textarea{min-height:74px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:2px solid var(--brand);border-color:var(--brand)}
+.field .hint{font-size:12px;color:#a0aabd;margin-top:4px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* 文件上传 */
+.upload{border:2px dashed var(--brand);border-radius:10px;padding:26px;text-align:center;color:var(--ink-2);background:#fafbff;transition:.2s}
+.upload:hover{border-color:var(--gold);color:var(--brand)}
+.upload input[type=file]{display:none}
+.upload .upic{width:46px;height:46px;margin:0 auto 10px;border-radius:10px;background:var(--brand);display:grid;place-items:center;color:#fff}
+.upload .up-t{font-weight:700;font-size:15px}
+.upload .up-s{font-size:12.5px;color:#a0aabd;margin-top:4px}
+.filelist{margin-top:16px}
+.fileitem{display:flex;align-items:center;justify-content:space-between;background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:14px}
+.fileitem .nm{color:var(--ink);font-weight:600}
+.fileitem .sz{color:var(--ink-2);font-size:12.5px}
+.fileitem .del{background:var(--danger);color:#fff;border-radius:6px;padding:4px 12px;font-size:12.5px}
+.fileitem .del:hover{opacity:.85}
+
+/* 动态列表 */
+.dynitem{background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:10px}
+.dynitem .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.dynitem .top b{color:var(--ink-2);font-size:13px}
+.dynitem .del{background:var(--danger);color:#fff;border-radius:6px;padding:4px 12px;font-size:12.5px}
+
+.btn{background:var(--brand);color:#fff;border-radius:8px;padding:11px 22px;font-size:14.5px;font-weight:600;transition:.2s}
+.btn:hover{background:var(--brand-deep)}
+.btn.gold{background:var(--gold);color:#fff}
+.btn.line{background:transparent;border:1px solid var(--brand);color:var(--brand)}
+.savebar{text-align:center;margin-top:8px}
+
+.foot{color:var(--ink-2);font-size:13px;text-align:center;padding:20px 0}
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media(max-width:680px){.row2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div class="container">
+    <h1>内容管理后台</h1>
+    <a class="back" href="index.html">← 返回官网首页</a>
+  </div>
+</header>
+
+<main>
+<div class="container">
+
+  <div class="note">此为网站<b>内容与管理后台前端</b>。你发布网站后，从这里进入即可维护主持人介绍、成员介绍、活动纪实习录，并上传自己的研修资源文件。文件保存与持久化存储请由技术老师按 README 说明接入后端完成。</div>
+
+  <!-- 主持人介绍 -->
+  <div class="panel">
+    <h2>① 主持人介绍</h2>
+    <div class="row2">
+      <div class="field"><label>姓名</label><input type="text" value="徐晶"></div>
+      <div class="field"><label>职务 / 头衔</label><input type="text" value="滨城名师初中英语徐晶工作室领衔人"></div>
+    </div>
+    <div class="field"><label>主持人简介</label><textarea>中共党员、正高级教师，大连市第七十九中学科研主任，辽宁教育学院培训专家库首批成员、辽宁省教育学会外语专业委员会理事。先后荣获辽宁省特级教师、兴辽英才教学名师、省中小学教学名师、省学科带头人等称号。</textarea></div>
+    <div class="field"><label>荣誉标签（逗号分隔）</label><input type="text" value="省特级教师,兴辽英才教学名师,省中小学教学名师,省学科带头人,正高级教师"></div>
+    <div class="field"><label>主持人照片</label>
+      <div class="upload" onclick="document.getElementById('f_photo').click()">
+        <input type="file" id="f_photo" accept="image/*">
+        <div class="upic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+        <div class="up-t">点击选择主持人照片</div>
+        <div class="up-s">支持 jpg / png，建议竖版证件或工作照</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 成员介绍 -->
+  <div class="panel">
+    <h2>② 主持人及成员介绍</h2>
+    <div id="memList">
+      <div class="dynitem">
+        <div class="top"><b>成员 1</b><button class="del" onclick="rmMem(this)">删除</button></div>
+        <div class="row2">
+          <div class="field"><label>姓名</label><input type="text" value="徐晶"></div>
+          <div class="field"><label>职务/单位</label><input type="text" value="工作室主持人 · 正高级教师"></div>
+        </div>
+      </div>
+    </div>
+    <button class="btn line" onclick="addMem()">＋ 添加成员</button>
+  </div>
+
+  <!-- 活动纪实 -->
+  <div class="panel">
+    <h2>③ 活动纪实</h2>
+    <div id="actList">
+      <div class="dynitem">
+        <div class="top"><b>活动 1</b><button class="del" onclick="rmAct(this)">删除</button></div>
+        <div class="field"><label>活动标题</label><input type="text" value="线上研修 · 课例研磨"></div>
+        <div class="field"><label>活动时间 / 说明</label><input type="text" value="常态化开展，覆盖跨校跨区域教研协同"></div>
+      </div>
+      <div class="dynitem">
+        <div class="top"><b>活动 2</b><button class="del" onclick="rmAct(this)">删除</button></div>
+        <div class="field"><label>活动标题</label><input type="text" value="示范送培 · 成果辐射"></div>
+        <div class="field"><label>活动时间 / 说明</label><input type="text" value="通过送教送培与经验分享推广优质课堂"></div>
+      </div>
+    </div>
+    <button class="btn line" onclick="addAct()">＋ 添加活动记录</button>
+  </div>
+
+  <!-- 资源文件 -->
+  <div class="panel">
+    <h2>④ 上传研修资源</h2>
+    <div class="upload" onclick="document.getElementById('f_res').click()">
+      <input type="file" id="f_res" multiple>
+      <div class="upic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+      <div class="up-t">点击选择研修资源文件</div>
+      <div class="up-s">研修案例、课件、论文、发展规划等，可多选</div>
+    </div>
+    <div class="filelist" id="resList"></div>
+  </div>
+
+  <!-- 公众号内容链接管理 -->
+  <div class="panel">
+    <h2>⑤ 公众号内容链接管理</h2>
+    <div class="note" style="margin-top:0">这里集中管理首页"可点开内容"跳转的公众号文章。每项填好【标题 + 公众号文章链接】后保存，首页对应条目即可点击直达公众号内容；公众号文章链接由你在微信后台复制粘贴进来。</div>
+    <div id="linkList">
+      <div class="dynitem">
+        <div class="top"><b>链接 1</b><button class="del" onclick="rmLink(this)">删除</button></div>
+        <div class="field"><label>标题</label><input type="text" value="创新玩英语让学生从苦学到善学"></div>
+        <div class="field"><label>公众号文章链接(URL)</label><input type="text" value="http://m.toutiao.com/group/7553878213202657792/"></div>
+      </div>
+    </div>
+    <button class="btn line" onclick="addLink()">＋ 添加一条公众号链接</button>
+    <p style="font-size:12px;color:#a0aabd;margin-top:10px">说明：填入的真实公众号文章链接会写入 links.json，供首页读取跳转；需由技术老师配置保存到服务器。</p>
+  </div>
+
+  <div class="savebar"><button class="btn gold" onclick="saveAll()">保存全部修改</button></div>
+
+</div>
+</main>
+
+<footer class="foot">滨城名师初中英语徐晶工作室 · 内容管理后台（前端模板）</footer>
+
+<script>
+function fmt(n){ if(n>1048576) return (n/1048576).toFixed(1)+' MB'; if(n>1024) return (n/1024).toFixed(0)+' KB'; return n+' B'; }
+var seq=1;
+function addMem(){ var i=seq++; var d=document.createElement('div'); d.className='dynitem';
+  d.innerHTML='<div class="top"><b>成员 '+i+'</b><button class="del" onclick="rmMem(this)">删除</button></div><div class="row2"><div class="field"><label>姓名</label><input type="text" placeholder="成员姓名"></div><div class="field"><label>职务/单位</label><input type="text" placeholder="单位 · 学科"></div></div>';
+  document.getElementById('memList').appendChild(d); }
+function rmMem(b){ b.closest('.dynitem').remove(); }
+function addAct(){ var i=seq++; var d=document.createElement('div'); d.className='dynitem';
+  d.innerHTML='<div class="top"><b>活动 '+i+'</b><button class="del" onclick="rmAct(this)">删除</button></div><div class="field"><label>活动标题</label><input type="text" placeholder="活动名称"></div><div class="field"><label>活动时间 / 说明</label><input type="text" placeholder="日期与内容说明"></div>';
+  document.getElementById('actList').appendChild(d); }
+function rmAct(b){ b.closest('.dynitem').remove(); }
+document.getElementById('f_res').addEventListener('change',function(){
+  var box=document.getElementById('resList'); box.innerHTML='';
+  Array.from(this.files).forEach(function(f){
+    var it=document.createElement('div'); it.className='fileitem';
+    it.innerHTML='<span class="nm">'+f.name+'</span><span style="display:flex;gap:10px;align-items:center"><span class="sz">'+fmt(f.size)+'</span><button class="del" onclick="this.parentNode.parentNode.remove()">移除</button></span>';
+    box.appendChild(it); }); });
+
+function addLink(){ var i=linkSeq++; var d=document.createElement('div'); d.className='dynitem';
+  d.innerHTML='<div class="top"><b>链接 '+i+'</b><button class="del" onclick="rmLink(this)">删除</button></div><div class="field"><label>标题</label><input type="text" placeholder="内容标题"></div><div class="field"><label>公众号文章链接(URL)</label><input type="text" placeholder="https://mp.weixin.qq.com/..."></div>';
+  document.getElementById('linkList').appendChild(d); }
+function rmLink(b){ b.closest('.dynitem').remove(); }
+var linkSeq=2;
+function saveAll(){ var btn=event.target; btn.textContent='已保存 ✓'; btn.style.background='var(--ok)';
+  setTimeout(function(){ btn.textContent='保存全部修改'; btn.style.background=''; },2000); }
+</script>
+</body>
+</html>

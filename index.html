@@ -206,10 +206,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
       </div>
     </div>
     <div class="media">
-      <div class="mt">权威媒体报道（可点击查阅原文）</div>
-      <a href="http://m.toutiao.com/group/7553878213202657792/" target="_blank" rel="noopener noreferrer"><b>半岛晨报 · 2025-09-25</b>｜大连市第七十九中学徐晶：创新"玩英语"让学生从苦学到善学</a>
-      <a href="https://m.thepaper.cn/newsDetail_forward_33847699" target="_blank" rel="noopener noreferrer"><b>大连发布 / 澎湃 · 2026-08-25</b>｜那些照亮我们的师者微光：徐晶从"一盘散沙"到"追梦家园"</a>
-      <a href="http://dianda.cqvip.com/Qikan/Article/Detail?id=7108560054" target="_blank" rel="noopener noreferrer"><b>辽宁教育 · 2022年第23期</b>｜《"双减"背景下初中英语课外阅读教学模式的改进研究》</a>
+      <div class="mt"> 权威报道 / 公众号文章</div>
+      <div id="wxBox"></div>
     </div>
   </section>
 
@@ -224,6 +222,35 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offse
     <p style="margin-top:14px;font-size:12.5px"><a href="manage.html" style="color:rgba(255,255,255,.4)">内容管理入口</a></p>
   </div>
 </footer>
+
+<script>
+/* 首页：优先读取 links.json（便于后台维护），读取不到时自动使用内置链接，确保任何情况下都正常显示内容。 */
+var DEFAULT_LINKS=[
+  {title:"创新“玩英语”，让学生从苦学到善学", source:"半岛晨报", url:"http://m.toutiao.com/group/7553878213202657792/"},
+  {title:"徐晶：从“一盘散沙”到“追梦家园”", source:"大连发布 / 澎湃", url:"https://m.thepaper.cn/newsDetail_forward_33847699"},
+  {title:"《“双减”背景下初中英语课外阅读教学模式的改进研究》", source:"辽宁教育", url:"http://dianda.cqvip.com/Qikan/Article/Detail?id=7108560054"}
+];
+function renderLinks(list){
+  var box=document.getElementById("wxBox"); if(!box) return;
+  box.innerHTML="";
+  list.forEach(function(a){
+    var el=document.createElement("a");
+    el.innerHTML="<b>"+(a.source||"")+"</b>｜"+a.title;
+    if(a.url){ el.href=a.url; el.target="_blank"; el.rel="noopener noreferrer"; }
+    else{ el.href="manage.html"; }
+    box.appendChild(el);
+  });
+}
+function loadLinks(){
+  try{
+    fetch("links.json").then(function(r){return r.json();}).then(function(d){
+      renderLinks(d && d.articles && d.articles.length ? d.articles : DEFAULT_LINKS);
+    }).catch(function(){ renderLinks(DEFAULT_LINKS); });
+  }catch(e){ renderLinks(DEFAULT_LINKS); }
+}
+loadLinks();
+</script></script>
+
 
 </body>
 </html>
