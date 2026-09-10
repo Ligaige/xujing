@@ -1,3 +1,37 @@
 {
-  'title':静态网页
+  "说明": "本文件是《首页可点开内容→对应网址》的链接库。",
+  "articles": [
+    {
+      "title": "创新“玩英语”，让学生从苦学到善学",
+      "source": "半岛晨报",
+      "url": "http://m.toutiao.com/group/7553878213202657792/"
+    },
+    {
+      "title": "徐晶：从“一盘散沙”到“追梦家园”",
+      "source": "大连发布 / 澎湃",
+      "url": "https://m.thepaper.cn/newsDetail_forward_33847699"
+    },
+    {
+      "title": "《“双减”背景下初中英语课外阅读教学模式的改进研究》",
+      "source": "辽宁教育",
+      "url": "http://dianda.cqvip.com/Qikan/Article/Detail?id=7108560054"
+    }
+  ],
+  "待填公众号文章": [
+    {
+      "title": "工作室研修案例（一）",
+      "source": "公众号",
+      "url": ""
+    },
+    {
+      "title": "工作室研修案例（二）",
+      "source": "公众号",
+      "url": ""
+    },
+    {
+      "title": "主持人专题讲座",
+      "source": "公众号",
+      "url": ""
+    }
+  ]
 }
